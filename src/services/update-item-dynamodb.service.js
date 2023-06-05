@@ -11,6 +11,8 @@ exports.putUserOnDatabase = async function (putItemCommand) {
         ConditionExpression: putItemCommand.ConditionExpression
     };
 
+    console.log(params);
+
     return await dynamodb.updateItem(params)
         .promise()
         .then((data) => {

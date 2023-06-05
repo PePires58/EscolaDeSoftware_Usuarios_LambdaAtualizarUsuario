@@ -1,6 +1,6 @@
 const validateUserObjectService = require('./services/validate-user-object.service');
 const createUpdateCommand = require('./services/create-user-update-command.service');
-const putItemDynamoDbService = require('./services/put-item-dynamodb.service');
+const updateItemDynamoDbService = require('./services/update-item-dynamodb.service');
 
 exports.lambdaHandler = async (event, context) => {
 
@@ -10,7 +10,7 @@ exports.lambdaHandler = async (event, context) => {
 
     const updateUserCommand = createUpdateCommand.createUserUpdateCommand(event.body);
     try {
-        await putItemDynamoDbService.putUserOnDatabase(updateUserCommand);
+        await updateItemDynamoDbService.putUserOnDatabase(updateUserCommand);
 
         return defaultResult(200, {
             'Mensagem': 'Usuário ' + updateUserCommand.email.S + ' atualizado com sucesso'

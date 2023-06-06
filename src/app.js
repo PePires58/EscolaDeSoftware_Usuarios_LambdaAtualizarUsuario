@@ -14,15 +14,13 @@ exports.lambdaHandler = async (event, context) => {
 
         console.log(result);
         return defaultResult(200, {
-            'Mensagem': 'Usuário ' + updateUserCommand.email.S + ' atualizado com sucesso'
+            'Mensagem': 'Usuário ' + updateUserCommand.Key.email.S + ' atualizado com sucesso'
         });
     } catch (error) {
         if (error.code === 'ConditionalCheckFailedException') {
-
             return errorResult(404, {
-                'Mensagem': 'Usuário ' + updateUserCommand.email.S + ' não encontrado'
+                'Mensagem': 'Usuário ' + updateUserCommand.Key.email.S + ' não encontrado'
             });
-
         }
         return errorResult(500, error);
     }

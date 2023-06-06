@@ -7,10 +7,9 @@ exports.putUserOnDatabase = async function (putItemCommand) {
         Key: putItemCommand.Key,
         TableName: process.env.TableName,
         ReturnConsumedCapacity: "TOTAL",
-        UpdateExpression: putItemCommand.UpdateExpression
+        UpdateExpression: putItemCommand.UpdateExpression,
+        ConditionExpression: putItemCommand.ConditionExpression
     };
-
-    console.log(params);
 
     return await dynamodb.updateItem(params)
         .promise()

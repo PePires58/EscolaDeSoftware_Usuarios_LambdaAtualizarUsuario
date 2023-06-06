@@ -1,0 +1,6 @@
+{
+  "Parameters": {
+    "Environment": "dev",
+    "TableName": "tbes_usuarios_dev"
+  }
+}

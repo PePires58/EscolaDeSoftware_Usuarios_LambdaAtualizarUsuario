@@ -1,0 +1,16 @@
+{
+  "name": "escoladesoftware-usuarios-lambdaatualizarusuariofn",
+  "version": "1.0.0",
+  "description": "contém uma lambda que atualiza os usuarios na base de dados",
+  "repository": "https://github.com/PePires58/EscolaDeSoftware_Usuarios_LambdaAtualizarUsuario",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha './specs/*.spec.js'"
+  },
+  "author": "PEDRO HENRIQUE PIRES - Escola de Software",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.1385.0",
+    "mocha": "^10.1.0"
+  }
+}

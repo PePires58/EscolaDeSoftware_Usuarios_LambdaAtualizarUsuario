@@ -1,0 +1,6 @@
+{
+  "Parameters": {
+    "Environment": "prod",
+    "TableName": "tbes_usuarios"
+  }
+}

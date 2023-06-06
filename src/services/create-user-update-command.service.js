@@ -5,19 +5,13 @@ exports.createUserUpdateCommand = function (user) {
                 S: user.email
             }
         },
-        ExpressionAttributeNames: {
-            "#nome": "nome",
-            "#sobrenome": "sobrenome",
-            "#cpf": "cpf",
-            "#email": ":email"
-        },
         ExpressionAttributeValues: {
             ":nome": { S: user.nome },
             ":sobrenome": { S: user.sobrenome },
             ":cpf": { S: user.cpf },
             ":email": { S: user.email }
         },
-        UpdateExpression: "SET #nome = :nome, #sobrenome = :sobrenome, #cpf = :cpf",
-        ConditionExpression: "#email = :email"
+        UpdateExpression: "SET nome = :nome, sobrenome = :sobrenome, cpf = :cpf",
+        ConditionExpression: "email = :email"
     };
 }

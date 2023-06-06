@@ -13,7 +13,7 @@ Resources:
   UsuariosLambdaAtualizarUsuarioFn:
     Type: AWS::Serverless::Function
     Properties:
-      Description: register an user on database
+      Description: update an user on database
       FunctionName: !Join ["_", [!Ref Environment, "escoladesoftware-usuarios-lambdaatualizarusuariofn"]]
       Handler: app.lambdaHandler
       CodeUri: src/

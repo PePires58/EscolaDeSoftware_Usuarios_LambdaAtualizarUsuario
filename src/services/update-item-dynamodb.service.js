@@ -7,6 +7,7 @@ exports.putUserOnDatabase = async function (putItemCommand) {
         Key: putItemCommand.Key,
         TableName: process.env.TableName,
         ReturnConsumedCapacity: "TOTAL",
+        UpdateExpression: putItemCommand.UpdateExpression
     };
 
     console.log(params);

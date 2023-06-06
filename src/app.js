@@ -4,11 +4,12 @@ const updateItemDynamoDbService = require('./services/update-item-dynamodb.servi
 
 exports.lambdaHandler = async (event, context) => {
 
-    const errors = validateUserObjectService.validateUserObject(event.body);
+    const bodyJson = JSON.parse(event.body);
+    const errors = validateUserObjectService.validateUserObject(bodyJson);
     if (errors.length > 0)
         return errorResult(400, errors);
 
-    const updateUserCommand = createUpdateCommand.createUserUpdateCommand(event.body);
+    const updateUserCommand = createUpdateCommand.createUserUpdateCommand(bodyJson);
     try {
         await updateItemDynamoDbService.putUserOnDatabase(updateUserCommand);
 

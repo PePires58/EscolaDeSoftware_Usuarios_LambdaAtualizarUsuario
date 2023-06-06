@@ -6,7 +6,7 @@ exports.putUserOnDatabase = async function (putItemCommand) {
         ExpressionAttributeValues: putItemCommand.ExpressionAttributeValues,
         Key: putItemCommand.Key,
         TableName: process.env.TableName,
-        ReturnConsumedCapacity: "TOTAL",
+        ReturnConsumedCapacity: "NONE",
         UpdateExpression: putItemCommand.UpdateExpression,
         ConditionExpression: putItemCommand.ConditionExpression
     };

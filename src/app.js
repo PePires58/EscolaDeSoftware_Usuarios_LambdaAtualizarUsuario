@@ -10,9 +10,8 @@ exports.lambdaHandler = async (event, context) => {
 
     const updateUserCommand = createUpdateCommand.createUserUpdateCommand(event.body);
     try {
-        const result = await updateItemDynamoDbService.putUserOnDatabase(updateUserCommand);
+        await updateItemDynamoDbService.putUserOnDatabase(updateUserCommand);
 
-        console.log(result);
         return defaultResult(200, {
             'Mensagem': 'Usuário ' + updateUserCommand.Key.email.S + ' atualizado com sucesso'
         });

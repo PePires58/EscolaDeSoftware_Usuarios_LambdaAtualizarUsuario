@@ -31,3 +31,16 @@ Resources:
         Value: Usuarios
       - Key: Servico
         Value: Lambda
+
+  UsuariosLambdaAtualizarUsuarioLogGroup: 
+    Type: AWS::Logs::LogGroup
+    Properties: 
+      LogGroupName: !Join ["", ["/aws/lambda/", !Ref Environment, "_escoladesoftware-usuarios-lambdaatualizarusuariofn"]]
+      RetentionInDays: 3
+      Tags: 
+        - Key: Ambiente
+          Value: !Ref Environment
+        - Key: Microservico
+          Value: Usuarios
+        - Key: Servico
+          Value: LogGroup

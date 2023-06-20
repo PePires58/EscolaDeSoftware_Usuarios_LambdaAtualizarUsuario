@@ -1,6 +1,7 @@
 {
   "Parameters": {
     "Environment": "prod",
-    "TableName": "tbes_usuarios"
+    "TableName": "tbes_usuarios",
+    "NomeFilaSqs": "sqs_mercadopago_atualizacliente"
   }
 }

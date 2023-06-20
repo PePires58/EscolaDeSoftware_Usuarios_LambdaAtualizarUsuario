@@ -15,12 +15,10 @@ exports.lambdaHandler = async (event, context) => {
     try {
         await updateItemDynamoDbService.putUserOnDatabase(updateUserCommand);
 
-        console.log('Criando objeto');
         const sendMessageObject = createObjectMessageService.CreateObject(bodyJson);
         const resultMensagem = await sendMessageService
             .GravarMensagem(JSON.stringify(sendMessageObject));
 
-        console.log('Retornando');
         if (resultMensagem.MessageId) {
             return defaultResult(200, {
                 'Mensagem': 'Usuário ' + updateUserCommand.Key.email.S + ' atualizado com sucesso'

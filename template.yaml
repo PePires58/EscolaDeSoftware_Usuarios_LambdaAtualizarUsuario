@@ -8,6 +8,9 @@ Parameters:
   TableName:
     Description: Table Name
     Type: String
+  NomeFilaSqs:
+    Description: Nome da fila SQS
+    Type: String
 
 Resources:  
   UsuariosLambdaAtualizarUsuarioFn:
@@ -18,12 +21,14 @@ Resources:
       Handler: app.lambdaHandler
       CodeUri: src/
       Runtime: nodejs18.x
-      Timeout: 2
+      Timeout: 3
       Policies:
         - AmazonDynamoDBFullAccess
+        - AmazonSQSFullAccess
       Environment:
         Variables:
           TableName: !Ref TableName
+          NomeFilaSqs: !Ref NomeFilaSqs
     Tags: 
       - Key: Ambiente
         Value: !Ref Environment

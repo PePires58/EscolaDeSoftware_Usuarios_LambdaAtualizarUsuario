@@ -1,6 +1,8 @@
 const validateUserObjectService = require('./services/validate-user-object.service');
 const createUpdateCommand = require('./services/create-user-update-command.service');
 const updateItemDynamoDbService = require('./services/update-item-dynamodb.service');
+const createObjectMessageService = require('./services/create-message-object.service');
+const sendMessageService = require('./services/grava-mensagem-fila.service');
 
 exports.lambdaHandler = async (event, context) => {
 
@@ -13,9 +15,16 @@ exports.lambdaHandler = async (event, context) => {
     try {
         await updateItemDynamoDbService.putUserOnDatabase(updateUserCommand);
 
-        return defaultResult(200, {
-            'Mensagem': 'Usuário ' + updateUserCommand.Key.email.S + ' atualizado com sucesso'
-        });
+        const sendMessageObject = createObjectMessageService.CreateObject(bodyJson);
+        const resultMensagem = await sendMessageService
+            .GravarMensagem(JSON.stringify(sendMessageObject));
+
+        if (resultMensagem.MessageId)
+            return defaultResult(200, {
+                'Mensagem': 'Usuário ' + updateUserCommand.Key.email.S + ' atualizado com sucesso'
+            });
+
+        return errorResult(500, { 'Erro': 'Erro ao atualizar o usuário' });
     } catch (error) {
         if (error.code === 'ConditionalCheckFailedException') {
             return errorResult(404, {
